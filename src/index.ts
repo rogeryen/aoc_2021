@@ -1,3 +1,3 @@
-export const start = () => console.log("Hello, World!");
+import { solve } from './01/solution';
 
-start();
+solve();
