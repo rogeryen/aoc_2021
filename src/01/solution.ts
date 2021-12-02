@@ -2,9 +2,6 @@ import fs = require('fs');
 import path = require('path');
 
 export const countIncreases = (depths: number[]) => {
-    if (depths.length === 1) {
-        return 0;
-    }
     let increases = 0;
 
     for (let i = 0; i < depths.length; i++) {
