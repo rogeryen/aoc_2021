@@ -1,4 +1,4 @@
-export const countIncreases = (depths: number[]) => {
+export const countIncreases = (depths: number[]): number => {
     let increases = 0;
 
     for (let i = 0; i < depths.length; i++) {
@@ -9,7 +9,7 @@ export const countIncreases = (depths: number[]) => {
     return increases;
 }
 
-export const countIncreasesInThrees = (depths: number[]) => {
+export const countIncreasesInThrees = (depths: number[]): number => {
     if (depths.length < 4) {
         return 0;
     }
