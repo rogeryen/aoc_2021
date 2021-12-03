@@ -1,3 +1,5 @@
+[![CI](https://github.com/rogeryen/aoc_2021/actions/workflows/ci.yml/badge.svg)](https://github.com/rogeryen/aoc_2021/actions/workflows/ci.yml)
+
 <h1 align="center">🏆 Jest Typescript Starter</h1>
 <h3 align="center">A starter for a node app with Jest, TypeScript and some other basic configurations.</h3>
 
