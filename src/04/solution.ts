@@ -76,11 +76,13 @@ export const bingo = (data: string[]): number => {
 }
 
 export const bingoLast = (data: string[]): number => {
-    let { picks, boards } = parsePicksAndBoards(data);
+    const picksBoards = parsePicksAndBoards(data);
+    const { picks } = picksBoards;
+    let { boards } = picksBoards;
     let score = 0;
     for (const num of picks) {
         markNumber(boards, num);
-        let winners = new Set<number>();
+        const winners = new Set<number>();
         for (let i = 0; i < boards.length; i++) {
             if (checkSolution(boards[i])) {
                 score = unmarkedSum(boards[i]) * parseInt(num);
