@@ -29,16 +29,25 @@ export const getLinePoints = (line: ILine) => {
         for (let i = smallerY; i <= smallerY + Math.abs(line.p1.y - line.p2.y); i++) {
             points.push({x: line.p1.x, y: i});
         } 
-    } else {
+    } else if (line.p1.y === line.p2.y) {
         const smallerX = line.p1.x < line.p2.x ? line.p1.x: line.p2.x;
         for (let i = smallerX; i <= smallerX + Math.abs(line.p1.x - line.p2.x); i++) {
             points.push({x: i, y: line.p1.y});
         } 
+    } else {
+        points.push(line.p1);
+        let x = line.p1.x;
+        let y = line.p1.y;
+        while (x !== line.p2.x && y !== line.p2.y) {
+            x = x < line.p2.x ? x+1 : x-1;
+            y = y < line.p2.y ? y+1 : y-1;
+            points.push({x: x, y: y});
+        }
     }
     return points;
 };
 
-export const countIntersectPoints = (data: string[]): number => {
+export const countIntersectPoints = (data: string[], verticalAndHorizontalOnly = true): number => {
     const lines: ILine[] = [];
     for (const d of data) {
         lines.push(parseLine(d));
@@ -47,7 +56,7 @@ export const countIntersectPoints = (data: string[]): number => {
     let count = 0;
 
     for (const line of lines) {
-        if (!isHorizontalOrVertical(line)) {
+        if (verticalAndHorizontalOnly && !isHorizontalOrVertical(line)) {
             continue;
         }
 

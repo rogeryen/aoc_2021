@@ -49,7 +49,7 @@ describe('5a', () => {
             '5,1 -> 5,5'
         ];
 
-        expect(countIntersectPoints(lines)).toEqual(0);
+        expect(countIntersectPoints(lines, true)).toEqual(0);
     });
 
     it('countIntersectPoints will return 1 with 2 intersected lines', () => {
@@ -58,7 +58,7 @@ describe('5a', () => {
             '3,0 -> 5,0'
         ];
 
-        expect(countIntersectPoints(lines)).toEqual(1);
+        expect(countIntersectPoints(lines, true)).toEqual(1);
     });
 
     it('countIntersectPoints will return 1 with 3 intersected lines', () => {
@@ -68,7 +68,7 @@ describe('5a', () => {
             '0,0 -> -1,0'
         ];
 
-        expect(countIntersectPoints(lines)).toEqual(1);
+        expect(countIntersectPoints(lines, true)).toEqual(1);
     });
 
     it('countIntersectPoints will return 2 with 1 line intersecting with two others on either end', () => {
@@ -78,11 +78,38 @@ describe('5a', () => {
             '9,1 -> 9,10'
         ];
 
-        expect(countIntersectPoints(lines)).toEqual(2);
+        expect(countIntersectPoints(lines, true)).toEqual(2);
     });
 
     it('countIntersectPoints will return 5147 with input file', () => {
         const data = readFileIntoStringArray('./src/05/input.txt');
-        expect(countIntersectPoints(data)).toEqual(5147);
+        expect(countIntersectPoints(data, true)).toEqual(5147);
+    });
+});
+
+describe('5b', () => {
+    it('getLinePoints will return 00 11 22 33 44 between 00 and 44', () => {
+        const points = getLinePoints({p1: {x: 0, y: 0}, p2: {x: 4, y: 4}});
+        expect(points).toEqual([{x: 0, y: 0}, {x: 1, y: 1}, {x: 2, y: 2}, {x: 3, y: 3}, {x: 4, y: 4}]);
+    });
+
+    it('getLinePoints will return 79 88 97 106 between 7,9 and 10,6', () => {
+        const points = getLinePoints({p1: {x: 7, y: 9}, p2: {x: 10, y: 6}});
+        expect(points).toEqual([{x: 7, y: 9}, {x: 8, y: 8}, {x: 9, y: 7}, {x: 10, y: 6}]);
+    });
+
+    it('countIntersectPoints will return 2 with 1 diagonal line intersecting with two horizontal lines', () => {
+        const lines = [
+            '0,0 -> 6,6',
+            '0,1 -> 5,1',
+            '3,5 -> 10,5'
+        ];
+
+        expect(countIntersectPoints(lines, false)).toEqual(2);
+    });
+
+    it('countIntersectPoints will return 16925 with input file', () => {
+        const data = readFileIntoStringArray('./src/05/input.txt');
+        expect(countIntersectPoints(data, false)).toEqual(16925);
     });
 });
