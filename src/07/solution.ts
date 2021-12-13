@@ -4,12 +4,12 @@ export const calculateLeastFuelToAlign = (positions: number[], fuelCostModifier?
     const pastFuelCost: Set<number> = new Set<number>();
     const uniqueAnchors: Set<number> = new Set<number>(positions);
     positions = positions.sort();
-    for (let currentAnchor of positions) {
+    for (const currentAnchor of positions) {
         if (pastFuelCost.has(currentAnchor)) {
             continue;
         }
         let fuel = 0;
-        for (let position of positions) {
+        for (const position of positions) {
             let cost = Math.abs(position - currentAnchor);
             if (fuelCostModifier) {
                 cost = fuelCostModifier(cost);
@@ -26,7 +26,7 @@ export const calculateLeastFuelToAlign = (positions: number[], fuelCostModifier?
     let currentAnchor = anchor - 1;
     while (currentAnchor > positions[0] && !uniqueAnchors.has(currentAnchor)) {
         let fuel = 0;
-        for (let position of positions) {
+        for (const position of positions) {
             let cost = Math.abs(position - currentAnchor);
             if (fuelCostModifier) {
                 cost = fuelCostModifier(cost);
@@ -43,7 +43,7 @@ export const calculateLeastFuelToAlign = (positions: number[], fuelCostModifier?
     currentAnchor = anchor + 1;
     while (currentAnchor < positions[positions.length - 1] && !uniqueAnchors.has(currentAnchor)) {
         let fuel = 0;
-        for (let position of positions) {
+        for (const position of positions) {
             let cost = Math.abs(position - currentAnchor);
             if (fuelCostModifier) {
                 cost = fuelCostModifier(cost);
