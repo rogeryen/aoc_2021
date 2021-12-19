@@ -1,4 +1,4 @@
-import { createGrid, parsePointsAndFolds, numberOfPointsAfterFirstFold } from './solution';
+import { createGrid, parsePointsAndFolds, numberOfPointsAfterFirstFold, gridAfterFolds } from './solution';
 import { readFileIntoStringArray } from '../utils/files';
 
 describe('13a', () => {
@@ -80,3 +80,25 @@ describe('13a', () => {
         expect(numberOfPointsAfterFirstFold(data)).toEqual(704);
     });
 });
+
+describe('13b', () => {
+    it('gridAfterFolds with input file should return two dimensional with 8 capital letters and a vertical empty(false) line after each letter', () => {
+        const data = readFileIntoStringArray('./src/13/input.txt');
+        const grid = gridAfterFolds(data);
+        // let str = ''
+        // for (const row of grid) {
+        //     str += row.map((v) => v ? '1' : ' ').join('') + '\n'
+        // }
+        // console.log(str)
+        let emptyCol = -1;
+        for (let i = 0; i < 8; i++) {
+            emptyCol += 5;
+            expect(grid[0][emptyCol]).toEqual(false);
+            expect(grid[1][emptyCol]).toEqual(false);
+            expect(grid[2][emptyCol]).toEqual(false);
+            expect(grid[3][emptyCol]).toEqual(false);
+            expect(grid[4][emptyCol]).toEqual(false);
+            expect(grid[5][emptyCol]).toEqual(false);
+        }
+    });
+})

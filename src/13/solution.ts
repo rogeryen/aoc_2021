@@ -114,3 +114,12 @@ export const numberOfPointsAfterFirstFold = (lines: string[]): number => {
     }
     return count;
 }
+
+export const gridAfterFolds = (lines: string[]): boolean[][] => {
+    const pointsAndFolds = parsePointsAndFolds(lines);
+    let grid = createGrid(pointsAndFolds.points);
+    for (const fold of pointsAndFolds.folds) {
+        grid = foldGrid(grid, fold);
+    }
+    return grid;
+}
