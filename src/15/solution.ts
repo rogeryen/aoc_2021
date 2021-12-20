@@ -1,4 +1,4 @@
-var dijkstra = require('dijkstrajs');
+import * as dijkstra from 'dijkstrajs';
 
 
 export const lowestCostPath = (data: string[]): number => {
@@ -6,7 +6,7 @@ export const lowestCostPath = (data: string[]): number => {
     for (const line of data) {
         grid.push(line.split('').map((v) => parseInt(v)));
     }
-    const graph: { [key: string]: any } = {};
+    const graph: { [key: string]: { [key: string]: number } } = {};
     for (let row = 0; row < grid.length; row++) {
         for (let col = 0; col < grid[0].length; col++) {
             const key = `${row},${col}`;
