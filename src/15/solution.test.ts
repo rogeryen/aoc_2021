@@ -23,3 +23,26 @@ describe('15a', () => {
         expect(lowestCostPath(data)).toEqual(388);
     });
 });
+
+describe('15b', () => {
+    it('lowestCostPath with sample input and multiplier of 5 should return 315', () => {
+        const data = [
+            '1163751742',
+            '1381373672',
+            '2136511328',
+            '3694931569',
+            '7463417111',
+            '1319128137',
+            '1359912421',
+            '3125421639',
+            '1293138521',
+            '2311944581',
+        ]
+        expect(lowestCostPath(data, 5)).toEqual(315);
+    });
+
+    it('lowestCostPath with input file should return 2819', () => {
+        const data = readFileIntoStringArray('./src/15/input.txt');
+        expect(lowestCostPath(data, 5)).toEqual(2819);
+    });
+})
