@@ -72,7 +72,7 @@ describe('16b', () => {
         expect(calculateOuterPacketValue('9C0141080250320F1802104A08')).toEqual(1);
     });
 
-    it('calculatePacketValue for input file should return 1', () => {
-        expect(calculateOuterPacketValue(readFileIntoStringArray('./src/16/input.txt')[0])).toEqual(1);
+    it('calculatePacketValue for input file should return 19348959966392', () => {
+        expect(calculateOuterPacketValue(readFileIntoStringArray('./src/16/input.txt')[0])).toEqual(19348959966392);
     });
 })
