@@ -75,3 +75,38 @@ const sumPacketVersions = (packet: IPacket): number => {
     }
     return sum;
 }
+
+export const calculateOuterPacketValue = (hex: string): number => {
+    const bitArray = hexToBin(hex).split('')
+    const packet = parsePacket(bitArray)[0];
+
+    return calculatePacketValue(packet);
+}
+
+const calculatePacketValue = (packet: IPacket): number => {
+    if (packet.type === 4) {
+        return packet.literalValue || 0;
+    } else {
+        const subPacketValues: number[] = [];
+        for (const subPacket of packet.subPackets) {
+            subPacketValues.push(calculatePacketValue(subPacket));
+        }
+        if (packet.type === 0) {
+            return subPacketValues.reduce((sum, curr) => sum + curr, 0);
+        } else if (packet.type === 1) {
+            return subPacketValues.reduce((prod, curr) => prod * curr, 1);
+        } else if (packet.type === 2) {
+            return Math.min(...subPacketValues);
+        } else if (packet.type === 3) {
+            return Math.max(...subPacketValues);
+        } else if (packet.type === 5) {
+            return subPacketValues[0] > subPacketValues[1] ? 1 : 0;
+        } else if (packet.type === 6) {
+            return subPacketValues[0] < subPacketValues[1] ? 1 : 0;
+        } else if (packet.type === 7) {
+            return subPacketValues[0] === subPacketValues[1] ? 1 : 0;
+        }
+    }
+
+    return 0;
+}

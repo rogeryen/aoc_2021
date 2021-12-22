@@ -1,5 +1,5 @@
 import { readFileIntoStringArray } from '../utils/files';
-import { hexToBin, decodeVersionSum } from './solution';
+import { hexToBin, decodeVersionSum, calculateOuterPacketValue } from './solution';
 
 describe('16a', () => {
     it('hexToBin for D2FE28 should return 110100101111111000101000', () => {
@@ -36,5 +36,43 @@ describe('16a', () => {
 
     it('decodeVersionSum for input file should return 852', () => {
         expect(decodeVersionSum(readFileIntoStringArray('./src/16/input.txt')[0])).toEqual(852);
+    });
+})
+
+describe('16b', () => {
+    it('calculatePacketValue for C200B40A82 should return 3', () => {
+        expect(calculateOuterPacketValue('C200B40A82')).toEqual(3);
+    });
+
+    it('calculatePacketValue for 04005AC33890 should return 54', () => {
+        expect(calculateOuterPacketValue('04005AC33890')).toEqual(54);
+    });
+
+    it('calculatePacketValue for 880086C3E88112 should return 7', () => {
+        expect(calculateOuterPacketValue('880086C3E88112')).toEqual(7);
+    });
+
+    it('calculatePacketValue for CE00C43D881120 should return 9', () => {
+        expect(calculateOuterPacketValue('CE00C43D881120')).toEqual(9);
+    });
+
+    it('calculatePacketValue for D8005AC2A8F0 should return 1', () => {
+        expect(calculateOuterPacketValue('D8005AC2A8F0')).toEqual(1);
+    });
+
+    it('calculatePacketValue for F600BC2D8F should return 0', () => {
+        expect(calculateOuterPacketValue('F600BC2D8F')).toEqual(0);
+    });
+
+    it('calculatePacketValue for 9C005AC2F8F0 should return 0', () => {
+        expect(calculateOuterPacketValue('9C005AC2F8F0')).toEqual(0);
+    });
+
+    it('calculatePacketValue for 9C0141080250320F1802104A08 should return 1', () => {
+        expect(calculateOuterPacketValue('9C0141080250320F1802104A08')).toEqual(1);
+    });
+
+    it('calculatePacketValue for input file should return 1', () => {
+        expect(calculateOuterPacketValue(readFileIntoStringArray('./src/16/input.txt')[0])).toEqual(1);
     });
 })
